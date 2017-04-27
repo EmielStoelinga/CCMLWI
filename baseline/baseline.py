@@ -3,9 +3,12 @@ import pandas as pd
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+from sklearn import svm
+from sklearn.model_selection import cross_val_score
+
 
 def import_data(filename):
-	return pd.read_csv(filename, header=0).fillna('').as_matrix()
+	return pd.read_csv(filename, header=0).fillna('').values
 
 def pre_process(data):
 	for row in data[0:476]:
@@ -25,11 +28,34 @@ def add_avg_sentiment(data):
 		avgs[i] = avg
 	return np.append(data, avgs, axis=1)
 
+def divide_train_test(data):
+	train = data[:1610]
+	test = data[1611:]
+	return train, test
+
+def train(data, labels):
+	print(labels.shape)
+	return svm.SVC(kernel='linear', C=1).fit(data, labels)
+
+def cross_validate(data, labels, clsfr):
+	return cross_val_score(clsfr, data, labels, cv=5)
+
 def main():
 	data = import_data("./../data/Combined_News_DJIA.csv")
-	print(data.shape)
 	pre_processed = pre_process(data)
 	sentiment_included = add_avg_sentiment(pre_processed)
+
+	train_set, test_set = divide_train_test(sentiment_included)
+	train_labels = train_set[:,1].ravel()
+	train_sentiments = train_set[:,27].reshape(len(train_set), 1)
+	test_labels = test_set[:,1].ravel()
+	test_sentiments = test_set[:,27].reshape(len(test_set),1)
+
+	clsfr = train(train_sentiments, train_labels.astype('int'))
+	print("Training done.")
+	print(cross_validate(test_sentiments, test_labels.astype('int'), clsfr))
+	print("Cross validation done.")
+	print("Done.")
 
 if __name__ == "__main__":
 	main()
