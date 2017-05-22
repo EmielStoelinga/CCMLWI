@@ -1,0 +1,12 @@
+
+\.ipynb_checkpoints/
+
+\.vscode/
+
+*.pyc
+
+data/
+
+plt\.jpg
+
+*.pt
