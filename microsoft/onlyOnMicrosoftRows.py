@@ -10,13 +10,23 @@ from dateutil.parser import parse
 from datetime import timedelta
 
 import random
+import re
+
+
+##### FLAGS
+train_on_avg_sentiments = False
+
 
 
 def import_data(filename):
 	return pd.read_csv(filename, header=0, sep = '\t').fillna('').values
 
 def pre_process(data):
-	return data
+	output = np.empty((1,data.shape[1]))
+	for line in data:
+		if re.search('microsoft', line[11]):
+			output = np.append(output, np.reshape(line, (1, data.shape[1])), axis=0)
+	return output[1:]
 
 def add_sentiment(data):
 	sid = SentimentIntensityAnalyzer()
@@ -52,6 +62,16 @@ def calc_avg_sentiments(data):
 			print("Wrong date order.")
 	return output[1:]	# First row was to initialize. Ugly, but works.
 
+def filter_data(data):
+	output = np.empty((1,3))
+	for line in data:
+		ms = line[9]
+		msTom = line[10]
+		sentiment = line[12]
+
+		output = np.append(output, [[ms, msTom, sentiment]], axis=0)
+	return output[1:]
+
 def divide_train_test(data):
 	random.seed(2)
 	random.shuffle(data)
@@ -71,7 +91,12 @@ def main():
 	data = import_data("./../data/combined_technology_news_stocks.csv")
 	pre_processed = pre_process(data)
 	sentiment_included = add_sentiment(pre_processed)
-	avg_sentiments = calc_avg_sentiments(sentiment_included)
+	if train_on_avg_sentiments:
+		avg_sentiments = calc_avg_sentiments(sentiment_included)
+	else:
+		avg_sentiments = filter_data(sentiment_included)
+
+	print("Data exists of " + str(avg_sentiments.shape) + " cases.")
 
 	# Predict today's stock
 	train_set, test_set = divide_train_test(avg_sentiments)
@@ -85,9 +110,8 @@ def main():
 	print("Pedicting today's stock...")
 	scores = cross_validate(test_sentiments, test_labels.astype('int'), clsfr)
 	print(scores)
-	print(scores.mean())
+	print("Average: " + str(scores.mean()))
 	print("Cross validation done.")
-	print("Done.")
 
 	# Predict tomorrow's stock
 	train_set, test_set = divide_train_test(avg_sentiments)
@@ -101,7 +125,7 @@ def main():
 	print("Predicting tomorrow's stock...")
 	scores = cross_validate(test_sentiments, test_labels.astype('int'), clsfr)
 	print(scores)
-	print(scores.mean())
+	print("Average: " + str(scores.mean()))
 	print("Cross validation done.")
 	print("Done.")
 
