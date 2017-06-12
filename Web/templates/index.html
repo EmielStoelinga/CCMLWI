@@ -16,10 +16,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h1>Apple News</h1></div>
+                    <div class="panel-heading"><h1>Google News</h1></div>
                     <div class="panel-body">
                         <table class="table">
                             <thead>
@@ -43,10 +43,10 @@
 
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h1>Google News</h1></div>
+                    <div class="panel-heading"><h1>IBM News</h1></div>
                     <div class="panel-body">
                         <table class="table">
                             <thead>
@@ -70,34 +70,7 @@
 
 
             </div>
-            <div class="col-md-6">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h1>IBM News</h1></div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>News</th>
-                                    <th>LSTM</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for feed in feeds[2] %}
-                                <tr>
-                                    <td>{{ feed['title'] }}</td>
-                                    <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>
-
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <div class="panel panel-default">
                     <div class="panel-heading"><h1>Microsoft News</h1></div>
@@ -110,7 +83,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for feed in feeds[3] %}
+                                {% for feed in feeds[2] %}
                                 <tr>
                                     <td>{{ feed['title'] }}</td>
                                     <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>

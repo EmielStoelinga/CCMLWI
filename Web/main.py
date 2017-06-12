@@ -9,12 +9,9 @@ sys.path.append("./LSTM")
 from tf_data import TF_Data
 
 
-apple_model = {"model": load_model("./LSTM/combined_AAPL_tech_news.hdf5"), "data": TF_Data("./data/all_data/combined_AAPL_tech_news.csv", top_words=2000)}
-microsoft_model = {"model": load_model("./LSTM/combined_MSFT_tech_news.hdf5"), "data": TF_Data("./data/all_data/combined_MSFT_tech_news.csv", top_words=2000)}
-google_model = {"model": load_model("./LSTM/combined_GOOG_tech_news.hdf5"), "data": TF_Data("./data/all_data/combined_GOOG_tech_news.csv", top_words=2000)}
-ibm_model = {"model": load_model("./LSTM/combined_IBM_tech_news.hdf5"), "data": TF_Data("./data/all_data/combined_IBM_tech_news.csv", top_words=2000)}
-
-
+microsoft_model = {"model": load_model("./LSTM/combined_MSFT_tech_news_day_after_tomorrow_.hdf5"), "data": TF_Data("./data/combined_MSFT_tech_news.csv", top_words=2000)}
+google_model = {"model": load_model("./LSTM/combined_GOOG_tech_news_day_after_tomorrow_.hdf5"), "data": TF_Data("./data/combined_GOOG_tech_news.csv", top_words=2000)}
+ibm_model = {"model": load_model("./LSTM/combined_IBM_tech_news_day_after_tomorrow_.hdf5"), "data": TF_Data("./data/combined_IBM_tech_news.csv", top_words=2000)}
 
 
 app = Flask(__name__)
@@ -22,10 +19,6 @@ cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 @app.route("/")
 @cache.cached(timeout=50)
 def index():
-    AAPL_feed = feedparser.parse("https://feeds.finance.yahoo.com/rss/2.0/headline?s=AAPL&region=US&lang=en-US")['entries']
-    for f in AAPL_feed:
-        sentence = apple_model["data"].test_sentence(f['title'])        
-        f['LSTM'] = apple_model["model"].predict(sentence)[0][0]
     GOOG_feed = feedparser.parse("https://feeds.finance.yahoo.com/rss/2.0/headline?s=GOOG&region=US&lang=en-US")['entries']
     for f in GOOG_feed:
         sentence = google_model["data"].test_sentence(f['title'])        
@@ -43,7 +36,7 @@ def index():
 
 
 
-    return render_template("./index.html",feeds=[AAPL_feed, GOOG_feed,  IBM_feed, MSFT_feed])
+    return render_template("./index.html",feeds=[GOOG_feed,  IBM_feed, MSFT_feed])
 
 if __name__ == "__main__":
     app.run()

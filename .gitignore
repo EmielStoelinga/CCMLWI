@@ -10,3 +10,7 @@ data/
 plt\.jpg
 
 *.pt
+
+*.hdf5
+
+*.csv
