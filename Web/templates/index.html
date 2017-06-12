@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h1>Apple News</h1></div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>News</th>
+                                    <th>LSTM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in feeds[0] %}
+                                <tr>
+                                    <td>{{ feed['title'] }}</td>
+                                    <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h1>Google News</h1></div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>News</th>
+                                    <th>LSTM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in feeds[1] %}
+                                <tr>
+                                    <td>{{ feed['title'] }}</td>
+                                    <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h1>IBM News</h1></div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>News</th>
+                                    <th>LSTM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in feeds[2] %}
+                                <tr>
+                                    <td>{{ feed['title'] }}</td>
+                                    <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h1>Microsoft News</h1></div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>News</th>
+                                    <th>LSTM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in feeds[3] %}
+                                <tr>
+                                    <td>{{ feed['title'] }}</td>
+                                    <td style="background-color: rgb({{ 255 - (255 * (100 * feed['LSTM'])) /100  |round}} ,{{ 255- (255 * (100 -(100 * feed['LSTM'])))/100   |round }},0)">{{ feed['LSTM']|round(3) }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
