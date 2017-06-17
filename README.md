@@ -36,23 +36,24 @@ Include graphs, equations, pictures, etc. as appropriate
 Results
 Include relevant observations, measurements, and statistics. Be sure to include basic statistics about the size of the input and relevant parameters for which there may not be standard values in the field.
  
-### Stock market prediction: predicting the Dow Jones Industrial Average
-#### A first try
+### Sentiment Analysis
+#### Stock market prediction: predicting the Dow Jones Industrial Average
+##### A first try
 A first try of predicting the stock market was done by predicting the Dow Jones Industrial Average (DJIA) with a top 25 of news headlines extracted from Reddit. Data was provided through Kaggle (https://www.kaggle.com/aaron7sun/stocknews) and included data points over a period of roughly 8 years. Every data point represented a single day and contained a boolean which indicated whether the Dow Jones Industrial Average decreased (0) or stayed the same or increased (1). Furthermore, every datapoint contained the top-25 of news headlines from Reddit.
  
 For every instance, average sentiment of the 25 news headlines was calculated using NLTK's Sentiment Intensity Analyzer (Bird et al., 2009). The compound sentiment value was taken as sentiment score. The average sentiment was used to train a support vector machine (SVM) with a linear kernel using 70% of the dataset as training set. The remaining part of the dataset was thereafter used in order to predict whether the DJIA went up or went down. Five fold cross-validation resulted in an average accuracy on the test set of 51.1%.
 Given that 50.8% of the labels in the test set had the value '1' (stock stays the same or increases), the SVM seemed to perform at chance level.
  
-#### Narrowing it down
+##### Narrowing it down
 Using the average sentiment for a given day, could result in a loss of information which could be a reason for poor accuracy in the previous experiment. Therefore, the dataset was decomposed such that every row contained a value which indicated what happened with the DJIA, a single news headline and its sentiment score. The SVM was thereafter trained in the same way, again with a linear kernel.
 Five fold cross-validation resulted in an average accuracy of 50.3%, which is slightly below chance level accuracy of 50.8%.
  
-### Stock market prediction: predicting technology stocks
+#### Stock market prediction: predicting technology stocks
 Prediction of the DJIA using the top-25 news headlines did not seem to result in an accuracy higher than chance. Therefore, sentiment analysis was further narrowed down into a specific field: a new approach was to predict change in a technological company's stock using technology headlines only, as these seemed to be more related.
 As a dataset, a set from Kaggle (https://www.kaggle.com/uciml/news-aggregator-dataset) was chosen which included news headlines categorized into multiple classes over a period of five months. The data was combined with boolean values which illustrated whether stocks for specific companies decreased, stayed the same or increased.
 The current study focused on headlines which regarded technology, hence all those news headlines were extracted from the dataset. Furthermore, indications of the stocks for the companies Microsoft, Google and IBM were included.
  
-#### Average technology sentiment
+##### Average technology sentiment
  
  
 ## Summary
