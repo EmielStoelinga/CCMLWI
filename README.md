@@ -61,6 +61,8 @@ Although these accuracies seem to indicate a rather good working SVM, closer ins
 ##### Using company specific headlines
 In order to remain using a dataset with a sufficient size and meanwhile using headlines and stock values that are related, the previous dataset was utilized in a different way. The dataset was first filtered such that the result was a table with technology news headlines only. Thereafter, for the companies Microsoft, Google and IBM the set was filtered such that three sets of data remained containing only headlines about the specific company. The sets were further extended by including values which indicated change of the company's stock the day the news headline came out, one day later and two days later. Furthermore, for every headline the sentiment was calculated. The result was a total of three datasets containing only technology headlines about the concerning company.
  
+Again, separate SVMs were trained which predicted the change of stock value separately for today, tomorrow and the day after tomorrow. Results are presented in Table 1, under 'only company specific headlines'.
+ 
  
  
 | Company | Only company specific headlines ||| Company specific headlines & tech average |||
@@ -69,9 +71,7 @@ In order to remain using a dataset with a sufficient size and meanwhile using he
 | Microsoft | 57.1%	| 63.2% | 55.1% | 57.1% | 63.2% | 55.9%	|
 | Google 	| 57.7%	| 59.3% | 58.2% | 57.7% | 59.3% | 58.2% |
 | IBM 		| 85.9%	| 51.1% | 67.6%	| 85.9% | 51.1% | 67.6% |
-
-| 	col1	|	col2 	|
-|	--- 	|	---		|
+Table 1: accuracy of stock prediction using sentiment analysis on company specific headlines
  
  
 ## Summary
@@ -108,3 +108,5 @@ J. Bollena, H. Maoa, and X. Zengb, Twitter mood predicts the stock market, Journ
 X. Zhang, H. Fuehres, and P. A. Gloor, Predicting Stock Market Indicators Through Twitter “I hope it is not as bad as I fear, Procedia - Social and Behavioral Sciences, 26 (2011)
  
 S. Bird, E. Loper and E. Klein, Natural Language Processing with Python,  O’Reilly Media Inc. (2009)
+ 
+ 
