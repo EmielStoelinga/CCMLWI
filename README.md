@@ -54,16 +54,17 @@ As a dataset, a set from Kaggle (https://www.kaggle.com/uciml/news-aggregator-da
 The current study focused on headlines which regarded technology, hence all those news headlines were extracted from the dataset. Furthermore, indications of changes in the stocks for the companies Microsoft, Google and IBM were included. These values represented separately changes in stock value for the day the news headline was brought out and the day after.
  
 ##### Using all technology headlines
-As a first endeavor, changes in Microsoft's stocks were predicted using the average sentiment of technology news headlines over a period of one day. A support vector machine was trained using a 70% of the dataset. The average accuracies on the test set using five-fold cross-validation were 65.3% for the day the news headline came out and 73.0% for the day after the news headline came out, with chance level accuracies of 34.4% and 27.6% respectively.
+As a first endeavor, changes in Microsoft's stocks were predicted using the average sentiment of technology news headlines over a period of one day. A support vector machine was trained using a 70% of the dataset. The average accuracies on the test set using five-fold cross-validation were 65.3% for the day the news headline came out and 73.0% for the day after the news headline came out, with chance level accuracies of 65.6% and 72.4% respectively.
  
 Although these accuracies seem to indicate a rather good working SVM, closer inspection reveals why the values might be misleading. Due to the calculation of average sentiments for certain days, the test set appeared to be a total of only 29 instances. The training set consisted of 65 examples. Accuracy values are heavily influenced by change with test sets of a certain limited size, which is why a new method was chosen afterwards.
  
 ##### Using company specific headlines
 In order to remain using a dataset with a sufficient size and meanwhile using headlines and stock values that are related, the previous dataset was utilized in a different way. The dataset was first filtered such that the result was a table with technology news headlines only. Thereafter, for the companies Microsoft, Google and IBM the set was filtered such that three sets of data remained containing only headlines about the specific company. The sets were further extended by including values which indicated change of the company's stock the day the news headline came out, one day later and two days later. Furthermore, for every headline the sentiment was calculated. The result was a total of three datasets containing only technology headlines about the concerning company.
  
-Again, separate SVMs were trained which predicted the change of stock value separately for today, tomorrow and the day after tomorrow. Results are presented in Table 1, under 'only company specific headlines'.
+Again, separate SVMs were trained which predicted the change of stock value separately for today, tomorrow and the day after tomorrow. Results are presented in Table 1, under 'only company specific headlines'. Accuracy was calculated using five fold cross-validation, using 30% of the dataset as test data. As a result the test sets had sizes of 1935, 3327, 219 instances for Microsoft, Google and IBM respectively. The baseline accuracy values were 57.1% for Microsoft, 57.7% for Google and 85.9% for IBM.
  
- 
+In addition, for every instance, the average sentiment in technology headlines for the associated day was included in a new column and included in the stock prediction. This resulted in classification with multiple features and three new SVMs were trained using the same parameters. Results are presented in Table 1, under 'company specific headlines & tech average'.
+As can be seen, the addition of average technology sentiment did not enhance accuracy significantly. Only for the prediction of Microsoft's stock two days after the news headline, did the extension produce a (minimal) change in accuracy.
  
 | Company | Only company specific headlines ||| Company specific headlines & tech average |||
 | --- | --- | --- | --- | --- | --- | --- |
@@ -71,7 +72,7 @@ Again, separate SVMs were trained which predicted the change of stock value sepa
 | Microsoft | 57.1%	| 63.2% | 55.1% | 57.1% | 63.2% | 55.9%	|
 | Google 	| 57.7%	| 59.3% | 58.2% | 57.7% | 59.3% | 58.2% |
 | IBM 		| 85.9%	| 51.1% | 67.6%	| 85.9% | 51.1% | 67.6% |
-
+ 
 Table 1: accuracy of stock prediction using sentiment analysis on company specific headlines
  
  
