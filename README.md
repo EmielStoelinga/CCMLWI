@@ -91,11 +91,11 @@ There is some future work that could still be experimented with. For instance, t
 ## Link to code
  
 ## Author contribution
-Joshua: LSTM approach, wrote:
+Joshua: full LSTM approach, wrote:
  
 Valerie: worked on topic modeling and bag of words model, but those did not give significant results that helped answer the research question, so they were not reported. wrote: background section, conclusion
  
-Emiel: sentiment analysis approach, wrote: 
+Emiel: full sentiment analysis approach, wrote: part on sentiment analysis
  
  
 ## References
