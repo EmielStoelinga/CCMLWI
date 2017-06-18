@@ -69,6 +69,9 @@ In order to remain using a dataset with a sufficient size and meanwhile using he
 |    Microsoft 	| 57.1%| 63.2%       | 55.1%             |	 57.1%| 63.2%       | 55.9%	          |
 |    Google	| 57.7%| 59.3%       | 58.2%             |	 57.7%| 59.3 %      | 58.2 %	          |
 |      IBM	| 85.9%| 51.1%       | 67.6%	          |	85.9% | 51.1%       | 67.6%              |
+
+| 	col1	|	col2 	|
+|	--- 	|	---		|
  
  
 ## Summary
