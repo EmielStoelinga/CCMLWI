@@ -1,10 +1,12 @@
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 from sklearn import svm
 from sklearn.model_selection import cross_val_score
+from sklearn import preprocessing
 
 from dateutil.parser import parse
 from datetime import timedelta
@@ -48,7 +50,12 @@ def calc_avg_sentiments(data):
 		date = parse(line[8])
 		sentiment = line[13]
 		if date > previousDate:
-			avgSent = sum(tempSents)/len(tempSents)
+			# print(tempSents)
+			tempSents = filter(lambda a: a != 0, tempSents)
+			if not len(tempSents) == 0:
+				avgSent = sum(tempSents)/len(tempSents)
+			else:
+				avgSent = 0
 			output = np.append(output, [[previousDate, avgSent]], axis=0)
 
 			tempSents = []
@@ -60,7 +67,7 @@ def calc_avg_sentiments(data):
 			print("Wrong date order during calculating average.")
 	avgSent = sum(tempSents)/len(tempSents)
 	output = np.append(output, [[previousDate, avgSent]], axis=0)
-	
+
 	return output[2:]	# First row was to initialize. Ugly, but works.
 
 
@@ -78,6 +85,7 @@ def combine_data(microsoft_data, tech_data):
 			else:
 				tech_index += 1
 				avg_sents[i] = tech_data[tech_index, 1]
+
 	microsoft_data = np.append(microsoft_data, avg_sents, axis=1)
 
 	return microsoft_data

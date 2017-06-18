@@ -53,7 +53,10 @@ def main():
 
 	clsfr = train(train_sentiments, train_labels.astype('int'))
 	print("Training done.")
-	print(cross_validate(test_sentiments, test_labels.astype('int'), clsfr))
+	results = cross_validate(test_sentiments, test_labels.astype('int'), clsfr)
+	print(test_labels.mean())
+	print(results)
+	print("Avg = " + str(results.mean()))
 	print("Cross validation done.")
 	print("Done.")
 

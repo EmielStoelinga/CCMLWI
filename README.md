@@ -49,11 +49,26 @@ Using the average sentiment for a given day, could result in a loss of informati
 Five fold cross-validation resulted in an average accuracy of 50.3%, which is slightly below chance level accuracy of 50.8%.
  
 #### Stock market prediction: predicting technology stocks
-Prediction of the DJIA using the top-25 news headlines did not seem to result in an accuracy higher than chance. Therefore, sentiment analysis was further narrowed down into a specific field: a new approach was to predict change in a technological company's stock using technology headlines only, as these seemed to be more related.
-As a dataset, a set from Kaggle (https://www.kaggle.com/uciml/news-aggregator-dataset) was chosen which included news headlines categorized into multiple classes over a period of five months. The data was combined with boolean values which illustrated whether stocks for specific companies decreased, stayed the same or increased.
-The current study focused on headlines which regarded technology, hence all those news headlines were extracted from the dataset. Furthermore, indications of the stocks for the companies Microsoft, Google and IBM were included.
+Prediction of the DJIA using the top-25 news headlines did not seem to result in an accuracy significantly higher than chance. Therefore, sentiment analysis was further narrowed down into a specific field: a new approach was to predict change in a technological company's stock using technology headlines only, as these seemed to be more related.
+As a dataset, a set from Kaggle (https://www.kaggle.com/uciml/news-aggregator-dataset) was chosen which included news headlines categorized into multiple classes over a period of five months. The data was combined with boolean values which illustrated whether stocks for the specific companies decreased, stayed the same or increased.
+The current study focused on headlines which regarded technology, hence all those news headlines were extracted from the dataset. Furthermore, indications of changes in the stocks for the companies Microsoft, Google and IBM were included. These values represented separately changes in stock value for the day the news headline was brought out and the day after.
  
-##### Average technology sentiment
+##### Using all technology headlines
+As a first endeavor, changes in Microsoft's stocks were predicted using the average sentiment of technology news headlines over a period of one day. A support vector machine was trained using a 70% of the dataset. The average accuracies on the test set using five-fold cross-validation were 65.3% for the day the news headline came out and 73.0% for the day after the news headline came out, with chance level accuracies of 34.4% and 27.6% respectively.
+ 
+Although these accuracies seem to indicate a rather good working SVM, closer inspection reveals why the values might be misleading. Due to the calculation of average sentiments for certain days, the test set appeared to be a total of only 29 instances. The training set consisted of 65 examples. Accuracy values are heavily influenced by change with test sets of a certain limited size, which is why a new method was chosen afterwards.
+ 
+##### Using company specific headlines
+In order to remain using a dataset with a sufficient size and meanwhile using headlines and stock values that are related, the previous dataset was utilized in a different way. The dataset was first filtered such that the result was a table with technology news headlines only. Thereafter, for the companies Microsoft, Google and IBM the set was filtered such that three sets of data remained containing only headlines about the specific company. The sets were further extended by including values which indicated change of the company's stock the day the news headline came out, one day later and two days later. Furthermore, for every headline the sentiment was calculated. The result was a total of three datasets containing only technology headlines about the concerning company.
+ 
+ 
+ 
+| Company || Only company specific headlines ||| Company specific headlines & tech average ||
+|		| Today | Tomorrow | D.a. tomorrow | Today | Tomorrow | D.a. tomorrow |
+| -----------------	| -------- | ------------- | ------------------- | -------- | ------------- | ------------------- |
+|    Microsoft 	| 57.1%| 63.2%       | 55.1%             |	 57.1%| 63.2%       | 55.9%	          |
+|    Google	| 57.7%| 59.3%       | 58.2%             |	 57.7%| 59.3 %      | 58.2 %	          |
+|      IBM	| 85.9%| 51.1%       | 67.6%	          |	85.9% | 51.1%       | 67.6%              |
  
  
 ## Summary
