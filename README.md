@@ -71,6 +71,7 @@ Again, separate SVMs were trained which predicted the change of stock value sepa
 | Microsoft | 57.1%	| 63.2% | 55.1% | 57.1% | 63.2% | 55.9%	|
 | Google 	| 57.7%	| 59.3% | 58.2% | 57.7% | 59.3% | 58.2% |
 | IBM 		| 85.9%	| 51.1% | 67.6%	| 85.9% | 51.1% | 67.6% |
+
 Table 1: accuracy of stock prediction using sentiment analysis on company specific headlines
  
  
