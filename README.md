@@ -64,8 +64,8 @@ In order to remain using a dataset with a sufficient size and meanwhile using he
  
  
 | Company | Only company specific headlines |a|a| Company specific headlines & tech average |a|a|
-|	a	| Today | Tomorrow | D.a. tomorrow | Today | Tomorrow | D.a. tomorrow |
 | --- | --- | --- | --- | --- | --- | --- |
+|	a	| Today | Tomorrow | D.a. tomorrow | Today | Tomorrow | D.a. tomorrow |
 | Microsoft | 57.1%	| 63.2% | 55.1% | 57.1% | 63.2% | 55.9%	|
 | Google 	| 57.7%	| 59.3% | 58.2% | 57.7% | 59.3% | 58.2% |
 | IBM 		| 85.9%	| 51.1% | 67.6%	| 85.9% | 51.1% | 67.6% |
