@@ -63,7 +63,7 @@ In order to remain using a dataset with a sufficient size and meanwhile using he
  
  
  
-| Company | <td colspan=3>Only company specific headlines | <td colspan=3>Company specific headlines & tech average |
+| Company  <td colspan=3>Only company specific headlines  <td colspan=3>Company specific headlines & tech average |
 | --- | --- | --- | --- | --- | --- | --- |
 |		| Today | Tomorrow | D.a. tomorrow | Today | Tomorrow | D.a. tomorrow |
 | Microsoft | 57.1%	| 63.2% | 55.1% | 57.1% | 63.2% | 55.9%	|
