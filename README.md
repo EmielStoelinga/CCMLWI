@@ -79,7 +79,7 @@ Table 1: accuracy of stock prediction using sentiment analysis on company specif
 
 For sentiment analysis it has been shown that the accuracy of predicting the stocks is not significantly better than predicting stochastically. Our next approach is to use a LSTM network to predict the stocks. LSTM is a type of recurrent neural network that preserves its state (Schmidhuber et Al., 1997). LSTM networks have already been proven successfully with text data for applications such as NLP(Sundermeyer et Al., 2012) and machine translation (Cho et Al., 2014). Because the headlines are also text based, the reasonable decision was to apply this type of network to our type of data. The type of problem that we face is a typical classification problem, so the network that needs be designed needs to be a classification network. This is a typically neural network that outputs a fully connected layer with a sigmoid or softmax activation function.  The architecture of the network that we used is shown in figure 1. In the next sections this network is discussed in detail
 
-![Architecture LSTM](architecture.png  "LSTM Architecture used to predict the stocks")
+![Architecture LSTM](report/architecture.png  "LSTM Architecture used to predict the stocks")
 
 Figure 1: Network architecture used to predict the stocks
 
