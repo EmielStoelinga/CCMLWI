@@ -1,3 +1,6 @@
+### DISCLAIMER
+This project was only made for a university Master's course. Do <b>not</b> expect fully tested, functional software nor support from the authors.
+
 # Stock Market prediction using news headlines
 
 ### Joshua van Kleef, Valerie Scholten and Emiel Stoelinga
